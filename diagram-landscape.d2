@@ -1,0 +1,111 @@
+direction: right
+vars: {
+  d2-config: {
+    layout-engine: elk
+    sketch: true
+  }
+}
+
+classes: {
+  ai_tool: { shape: image; width: 48; height: 48 }
+  storage: { shape: image; width: 48; height: 48 }
+}
+
+title: |md
+  # skills-sync
+| {near: top-center}
+
+watermark: "curtis-krygier" {
+  near: top-right
+  style: {
+    stroke-dash: 3
+    font-size: 14
+    opacity: 0.6
+  }
+}
+
+local: "Local Skills Library" {
+  style.fill: "#f8faff"
+  style.stroke: "#4a6cf7"
+
+  skill_md: "SKILL.md" {
+    shape: document
+    style.fill: "#fffbe6"
+    style.stroke: "#f5a623"
+  }
+  d2_file: "diagram.d2" {
+    shape: document
+    style.fill: "#e3f2fd"
+    style.stroke: "#1565c0"
+  }
+  svg_file: "diagram.svg" {
+    shape: document
+    style.fill: "#fce4ec"
+    style.stroke: "#c62828"
+  }
+}
+
+ai_tools: "AI Tools" {
+  style.fill: "#f8f0ff"
+  style.stroke: "#7c3aed"
+
+  claude_code: "Claude Code" {
+    icon: /home/curtis/gemini/gcp_icons_repo/public/icons/claude-code/default.svg
+    class: ai_tool
+  }
+  gemini_cli: "Gemini CLI" {
+    icon: /home/curtis/gemini/gcp_icons_repo/public/icons/gemini-google/color.svg
+    class: ai_tool
+  }
+}
+
+d2_skill: "d2-architect-standard\nskill" {
+  shape: rectangle
+  style.fill: "#f0fff4"
+  style.stroke: "#38a169"
+}
+
+d2_cli: "d2 -t 0" {
+  shape: hexagon
+  style.fill: "#ede7f6"
+  style.stroke: "#4527a0"
+}
+
+sync: "sync_skills.py" {
+  shape: rectangle
+  style.fill: "#fff3e0"
+  style.stroke: "#e65100"
+}
+
+drive: "Google\nShared Drive" {
+  shape: cylinder
+  style.fill: "#f3e5f5"
+  style.stroke: "#6a1b9a"
+}
+
+consumers: "Consumers" {
+  style.fill: "#f0f4ff"
+  style.stroke: "#4a6cf7"
+
+  claude: "Claude Code" {
+    icon: /home/curtis/gemini/gcp_icons_repo/public/icons/claude-code/default.svg
+    class: ai_tool
+  }
+  gemini: "Gemini CLI" {
+    icon: /home/curtis/gemini/gcp_icons_repo/public/icons/gemini-google/color.svg
+    class: ai_tool
+  }
+  web: "Gemini\nWeb App" {
+    icon: /home/curtis/gemini/gcp_icons_repo/public/icons/ai-studio-google/default.svg
+    class: ai_tool
+  }
+}
+
+ai_tools -> local.skill_md: "reads"
+ai_tools -> d2_skill: "invokes"
+d2_skill -> local.d2_file: "generates"
+local.d2_file -> d2_cli: "render"
+d2_cli -> local.svg_file
+local -> sync: "push changes"
+sync -> drive
+drive -> consumers

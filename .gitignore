@@ -1,0 +1,7 @@
+*.json
+*.svg
+*.pyc
+__pycache__/
+venv/
+.last_sync
+.config
