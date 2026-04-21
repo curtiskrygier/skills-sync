@@ -164,6 +164,24 @@ if ! "$VENV_DIR/bin/pip" install --require-hashes -r "$SCRIPT_DIR/requirements.l
 fi
 echo "Dependencies ready."
 
+# ── D2 diagramming tool ───────────────────────────────────────────────────────
+if command -v d2 &>/dev/null; then
+    echo "D2 already installed: $(d2 --version)"
+else
+    echo "Installing D2 diagramming tool..."
+    if command -v curl &>/dev/null; then
+        curl -fsSL https://d2lang.com/install.sh | sh -s -- --quiet
+        if command -v d2 &>/dev/null; then
+            echo "D2 installed: $(d2 --version)"
+        else
+            echo "Warning: D2 install may need PATH reload. Run: source ~/.bashrc (or ~/.zshrc)"
+            echo "  Or install manually: https://github.com/terrastruct/d2/releases"
+        fi
+    else
+        echo "Warning: curl not found — install D2 manually: https://github.com/terrastruct/d2/releases"
+    fi
+fi
+
 # ── Copy sync_skills.py ───────────────────────────────────────────────────────
 SYNC_SCRIPT="$SYNC_DIR/sync_skills.py"
 cp "$SCRIPT_DIR/sync_skills.py" "$SYNC_SCRIPT"

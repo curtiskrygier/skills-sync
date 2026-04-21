@@ -44,6 +44,7 @@ Google Shared Drive  ◄──────────────────�
 - **Google Workspace account** — Shared Drives are a Workspace feature (not available on free Gmail). If you only have a personal Google account, this tool won't work without code changes to target a regular My Drive folder instead.
 - A Google Shared Drive
 - The SA granted `Content Manager` access on the Shared Drive only
+- **D2** (open source, [terrastruct/d2](https://github.com/terrastruct/d2)) — installed automatically by `install.sh` via the official install script. Required for diagram generation. Self-contained Go binary, no runtime dependencies. For secure environments where piping curl to sh is not acceptable, download and verify a release binary directly from the [D2 releases page](https://github.com/terrastruct/d2/releases).
 
 ### Setting Up the Service Account
 
