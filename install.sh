@@ -170,7 +170,7 @@ if command -v d2 &>/dev/null; then
 else
     echo "Installing D2 diagramming tool..."
     if command -v curl &>/dev/null; then
-        curl -fsSL https://d2lang.com/install.sh | sh -s -- --quiet
+        curl -fsSL https://d2lang.com/install.sh | sh -s --
         if command -v d2 &>/dev/null; then
             echo "D2 installed: $(d2 --version)"
         else
