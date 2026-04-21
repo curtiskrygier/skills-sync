@@ -1,0 +1,9 @@
+*.json
+*.pyc
+__pycache__/
+venv/
+.last_sync
+.config
+# Generated SVGs (source .d2 files are tracked)
+diagram-landscape.svg
+# icons/ SVGs are source assets — tracked intentionally
